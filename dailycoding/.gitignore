@@ -1,0 +1,19 @@
+# Ignore Gradle project-specific cache directory
+.gradle
+
+# Ignore Gradle build output directory
+build
+.gitattributes
+.idea/compiler.xml
+.idea/gradle.xml
+.idea/jarRepositories.xml
+.idea/misc.xml
+.idea/uiDesigner.xml
+.idea/vcs.xml
+app/build.gradle
+settings.gradle
+gradle/wrapper/gradle-wrapper.properties
+gradlew
+gradlew.bat
+../forjava/average/.idea/vcs.xml
+../forjava/average/.idea/libraries/groovy_4_0_2.xml
