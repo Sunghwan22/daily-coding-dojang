@@ -6,10 +6,11 @@ package dailycoding;
 public class Solution {
   public int solution(int n) {
     int answer = 0;
+    String number = String.valueOf(n);
 
-    while(n>0) {
-        answer += n % 10;
-        n /= 10;
+
+    for(int i =0; i<number.length(); i+=1){
+      answer += Integer.parseInt(String.valueOf(number.charAt(i)));
     }
 
       return answer;
