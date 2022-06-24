@@ -1,5 +1,6 @@
 public class Lotto {
-  public int[] solution(int[] lottos, int[] win_nums) {
+  public int[] solution(int[] lottos, int[] win_nums)
+  {
 
     int[] answer = new int[2];
     int notRecognizeNumber = 0;
