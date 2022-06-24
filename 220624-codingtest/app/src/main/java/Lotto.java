@@ -1,18 +1,22 @@
 public class Lotto {
   public int[] solution(int[] lottos, int[] win_nums) {
-    lottos = new int[]{44, 1, 0, 0, 31, 25};
-    win_nums = new int[]{31,10,45,1,6,19};
 
-    int rank = 6;
+    int[] answer = new int[2];
+    int notRecognizeNumber = 0;
+    int rank = 0;
 
-    for(int i = 0; i< lottos.length; i+=1){
-      for(int j = 0; j< win_nums.length; j+=1){
-        if(lottos[i] == win_nums[j]){
-            rank -= 1;
+    for (int lotto : lottos) {
+      if (lotto == 0) {
+        notRecognizeNumber += 1;
+      }
+      for (int win_num : win_nums) {
+        if (lotto == win_num) {
+          rank += 1;
         }
       }
     }
-    return new int[]{rank};
+    answer[0] = rank + notRecognizeNumber > 1 ? 7 - (rank + notRecognizeNumber) : 6;
+    answer[1] = rank > 1 ? 7 - rank : 6;
+    return answer;
   }
 }
-
