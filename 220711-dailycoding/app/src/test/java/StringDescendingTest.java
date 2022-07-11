@@ -10,5 +10,4 @@ class StringDescendingTest {
 
     assertEquals("gfedcbZ", stringDescending.solution("Zbcdefg"));
   }
-
 }

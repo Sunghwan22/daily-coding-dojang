@@ -11,8 +11,11 @@ public class StringDescending {
     Arrays.sort(inputStringToChar);
 
     //내림차순으로 정렬해주기
-    for (int i = inputStringToChar.length - 1; i >= 0; i -= 1){
-      answer += inputStringToChar[i];
+    //for (int i = inputStringToChar.length - 1; i >= 0; i -= 1){
+      //answer += inputStringToChar[i];
+    //}
+    for(int i =0; i< inputStringToChar.length; i +=1){
+      answer = inputStringToChar[i] + answer;
     }
 
       return answer;
