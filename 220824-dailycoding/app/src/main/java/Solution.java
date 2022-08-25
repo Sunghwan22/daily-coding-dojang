@@ -10,8 +10,6 @@ import java.util.List;
 // 아니지 늘릴 필요가 굳이 없을 것 같기도하고
 class Solution {
   public int[] solution(int[] answers) {
-    int[] answer = {};
-
     int[] person1 = {1, 2, 3, 4, 5};
     int[] person2 = {2, 1, 2, 3, 2, 4, 2, 5};
     int[] person3 = {3, 3, 1, 1, 2, 2, 4, 4, 5, 5};
