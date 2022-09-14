@@ -39,6 +39,7 @@ class Solution {
         }
       }
     }
+
     return rank + notRecognizeNumber > 1 ? 7 - (rank + notRecognizeNumber) : 6;
   }
 }

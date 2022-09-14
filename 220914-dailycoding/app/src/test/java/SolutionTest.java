@@ -34,4 +34,14 @@ class SolutionTest {
 
     assertArrayEquals(new int[]{3,5}, solution.solution(lottos,winNumber) );
   }
+
+  @Test
+  void example2() {
+    Solution solution = new Solution();
+
+    int[] lottos = new int[]{0,0,0,0,0,0};
+    int[] winNumber = new int[]{38,19,20,40,15,25};
+
+    assertArrayEquals(new int[]{1,6}, solution.solution(lottos,winNumber) );
+  }
 }
