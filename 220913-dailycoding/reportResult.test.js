@@ -1,13 +1,38 @@
-import solution from './reportResult';
+import {
+  removeDuplicateItem, convertToReportedArray, makeReportingArray,
+} from './reportResult';
 
-test('solution', () => {
-  expect(solution(
-    ['muzi', 'frodo', 'apeach', 'neo'],
-    ['muzi frodo', 'apeach frodo', 'frodo neo', 'muzi neo', 'apeach muzi'],
-    '2',
-  )).toStrictEqual([2, 1, 1, 0]);
+test('Remove Duplicate Items in Report Array', () => {
+  expect(removeDuplicateItem([])).toStrictEqual([]);
+  expect(removeDuplicateItem([
+    'muzi frodo',
+    'apeach frodo',
+    'frodo neo',
+    'muzi neo',
+    'apeach muzi',
+  ])).toStrictEqual([
+    'muzi frodo',
+    'apeach frodo',
+    'frodo neo',
+    'muzi neo',
+    'apeach muzi',
+  ]);
+  expect(removeDuplicateItem(['ryan con', 'ryan con', 'ryan con', 'ryan con']))
+    .toStrictEqual(['ryan con']);
 });
 
-test('report', () => {
-  expect(report())
-})
+test('convertedToReportedArray', () => {
+  expect(convertToReportedArray([
+    'muzi frodo',
+    'apeach frodo',
+  ])).toStrictEqual([['muzi', 'frodo'], ['apeach', 'frodo']]);
+});
+
+test('makeReportingArray', () => {
+  expect(makeReportingArray(['1', '2', '3'], ['1', '2', '3']))
+    .toStrictEqual([
+      { user: '1', reporting: [] },
+      { user: '2', reporting: [] },
+      { user: '3', reporting: [] },
+    ]);
+});
