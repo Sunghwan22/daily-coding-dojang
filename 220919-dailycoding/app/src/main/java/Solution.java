@@ -39,7 +39,7 @@ public class Solution {
   }
 
   public boolean possible(int row) {
-    // 가로가 같으면 false
+
     for (int i = 0; i < row; i += 1) {
       if (board[i] == board[row]) {
         return false;
