@@ -6,7 +6,7 @@ function solution(number) {
       return cases;
     }
 
-    const casesAdded = [...cases, (cases[index - 1] + cases[index - 1]) % 1234567];
+    const casesAdded = [...cases, (cases[index - 1] + cases[index - 2]) % 1234567];
     return casesAdded;
   }, initialCase);
 
