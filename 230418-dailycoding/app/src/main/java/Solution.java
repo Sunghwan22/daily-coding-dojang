@@ -12,7 +12,7 @@ class Solution {
             //현재 x, y 좌표를 초깃값으로 갖는 변수 선언
             int reX = x;
             int reY = y;
-            // dirs i번째 문자 가져오기
+
             char s = dirs.charAt(i);
 
             // s와 범위 체크하고 해당하는 좌표 +-
