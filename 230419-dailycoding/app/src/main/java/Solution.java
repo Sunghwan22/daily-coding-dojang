@@ -19,7 +19,7 @@ public class Solution {
                 sum += endIndex;
             }
             // 합이 자연수 보다 크다면 숫자를 줄여야 하기 떄문에 startIndex += 1
-            else {
+            if ( sum > n) {
                 sum -= startIndex;
                 startIndex++;
             }
