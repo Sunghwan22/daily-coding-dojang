@@ -1,52 +1,42 @@
+import com.google.common.collect.ForwardingQueue;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
 import java.util.Stack;
 import java.util.StringTokenizer;
 
 public class Solution {
-    public static void main(String[] args) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(
-            new InputStreamReader(System.in));
+    // 가장 위에 있는 카드를 바닥에 버린다.
+    // 가장 위에 있는 카드를 가장 아래에 있는 카드 밑으로 옮긴다.
+    // 1
+    // 2     3
+    // 3     4      2
+    // 4     2      4       4
+    // n이 4일경우 이렇게 가장 마지막에 있는 카드는 4이다.
 
-        int size = Integer.parseInt(bufferedReader.readLine());
-        int[] numbers = new int[size];
+    // 지금 상황이 데이터의 양쪽에서 삽입과 삭제가 일어나기 때문에 queue를 사용한게 좋을 것 같다.
 
-        StringTokenizer stringTokenizer = new StringTokenizer(bufferedReader.readLine());
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
-        for(int i = 0; i < size; i += 1) {
-            numbers[i] = Integer.parseInt(stringTokenizer.nextToken());
+        int n = scanner.nextInt();
+
+        Queue<Integer> queue = new LinkedList<>();
+
+        for(int i = 1; i <= n; i += 1) {
+            queue.add(i);
         }
 
-        Stack<Integer> stack = new Stack<>();
-        int number = 1;
-        boolean result = true;
-        StringBuffer stringBuffer = new StringBuffer();
+        while (queue.size() == 1) {
+            int temp = queue.poll();
 
-        for(int i = 0; i < numbers.length; i += 1) {
-            int su = numbers[i];
-
-            if(su >= number) {
-                while (su >= number) {
-                    stack.push(number + 1);
-                    stringBuffer.append("+\n");
-                }
-                stack.pop();
-                stringBuffer.append("-\n");
-            } else {
-                int n = stack.pop();
-                if(n < su) {
-                    System.out.print("NO");
-                    result = false;
-                    break;
-                } else {
-                    stringBuffer.append("-\n");
-                }
-            }
+            queue.add(temp);
         }
 
-        if(result) {
-            System.out.print(stringBuffer.toString());
-        }
+        System.out.print(queue.poll());
     }
 }
