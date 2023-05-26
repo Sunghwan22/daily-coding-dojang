@@ -37,7 +37,7 @@ public class Solution {
         a = new ArrayList[n + 1];
 
         // 인접 노드 들 넣기위해 그래프 초기화
-        for (int i = 1; i < n + 1; i += 1) {
+        for (int i = 1; i < n; i += 1) {
             a[i] = new ArrayList<>();
         }
 
