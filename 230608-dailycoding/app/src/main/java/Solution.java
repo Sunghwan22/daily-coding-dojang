@@ -2,33 +2,42 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Solution {
-    public static void main(String[] args) {
-        // 그리디 알고리즘은 항상 최선의 선택을 보장하지는 않는다.
-        // 음 인풋이 제곱 즉 배수형태로 나오면은 반례가 없다.
-        // 그리디 알고리즘으로 풀 수 있도록 뒤의 동전 가격 부터 사용을 하면은 된다.
+    private static int answer = 0;
 
+    public static void main(String[] args) {
+        // 빼기가 나올 떄 마다 괄호를 치고
+        // 그렇게 여러개가 나오면 제일 큰 친구를 찾아서
         Scanner scanner = new Scanner(System.in);
 
-        int coin = scanner.nextInt();
-        int targetMoney = scanner.nextInt();
+        String example = scanner.nextLine();
 
-        int[] coins = new int[coin];
+        String[] str = example.split("-");
 
-        for(int i = 0; i < coin; i += 1) {
-            coins[i] = scanner.nextInt();
-        }
+        for(int i =0; i < str.length; i += 1) {
+            int sum = mySum(str[i]);
 
-        int count = 0;
+            // 맨 처음에 100이 있으니까 그건 더해 줘야함
+            if(i == 0) {
+                answer = answer + sum;
+            }
 
-        for(int i = coin - 1; i >= 0; i -= 1 ) {
-            // 타겟 머니 보다 작거나 같으면은 카운트에 몇개를 사용했는지 더해주고
-            // 타겟머니는 이제 그 나머지 값이 되면 된다.
-            if(coins[i] <= targetMoney) {
-                count += (targetMoney / coins[i]);
-                targetMoney = targetMoney % coins[i];
+            if(i != 0) {
+                answer = answer - sum;
             }
         }
 
-        System.out.println(count);
+        System.out.print(answer);
+    }
+
+    private static int mySum(String example) {
+        int sum = 0;
+
+        String[] str = example.split("[+]");
+
+        for(int i =0; i < str.length; i += 1) {
+            sum = sum + Integer.parseInt(str[i]);
+        }
+
+        return sum;
     }
 }
