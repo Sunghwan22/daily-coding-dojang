@@ -1,18 +1,18 @@
 class Solution {
-    public String solution(String my_string, String overwrite_string, int s) {
-        String subString = my_string.substring(0, s);
+    public String solution(String str1, String str2) {
+        String answer = "";
 
-        int index = s + overwrite_string.length();
+        // 문자열을 섞어야 한다. 서로 번갈아 가면서 한 번씩 등장해야 한다
 
-        for(int i = 0; i < overwrite_string.length(); i += 1 ) {
-            subString += overwrite_string.charAt(i);
+        for(int i =0; i < str1.length(); i += 1) {
+            String word1 = String.valueOf(str1.charAt(i));
+            String word2 = String.valueOf(str2.charAt(i));
+
+            String word = word1 + word2;
+
+            answer += word;
         }
 
-        if(s + overwrite_string.length() < my_string.length()) {
-            String temp = my_string.substring(index);
-            subString += temp;
-        }
-
-        return subString;
+        return answer;
     }
 }
