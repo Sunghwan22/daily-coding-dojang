@@ -1,22 +1,18 @@
-import java.util.Scanner;
+class Solution {
+    public String solution(String my_string, String overwrite_string, int s) {
+        String subString = my_string.substring(0, s);
 
-public class Solution {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        String a = sc.next();
+        int index = s + overwrite_string.length();
 
-        String answer = "";
-
-        for(char x : a.toCharArray()) {
-            if(Character.isUpperCase(x)) {
-                answer += Character.toLowerCase(x);
-            }
-
-            if(Character.isLowerCase(x)) {
-                answer += Character.toUpperCase(x);
-            }
+        for(int i = 0; i < overwrite_string.length(); i += 1 ) {
+            subString += overwrite_string.charAt(i);
         }
 
-        System.out.print(answer);
+        if(s + overwrite_string.length() < my_string.length()) {
+            String temp = my_string.substring(index);
+            subString += temp;
+        }
+
+        return subString;
     }
 }
