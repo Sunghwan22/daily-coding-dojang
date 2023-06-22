@@ -1,41 +1,33 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Scanner;
-import java.util.StringTokenizer;
+    import java.util.HashMap;
+    import java.util.Map;
 
-public class Solution {
-    public static void main(String[] args) throws IOException {
-        Scanner scanner = new Scanner(System.in);
+    class Solution {
+        public int solution(String name) {
+           int totalMoveCount = 0;
+           int number = name.length();
 
-        int coinNumber = scanner.nextInt();
-        int targetMoney = scanner.nextInt();
+           for(char c : name.toCharArray()) {
+                totalMoveCount += countAlphabetMove(c);
+           }
 
-        int[] coins = new int[coinNumber];
+           int minMoveCount = number - 1;
 
-        for(int i = 0; i < coinNumber; i += 1) {
-            coins[i] = scanner.nextInt();
+           for(int i = 0 ; i< name.length(); i += 1) {
+               int nextIndex = i + 1;
+
+               // 연속된 'A' 가 나올 경우 이동 횟수를 줄인다.
+               while (nextIndex < number && name.charAt(nextIndex) == 'A') {
+                   nextIndex += 1;
+               }
+
+               minMoveCount = Math.min(minMoveCount, i + i + number - nextIndex);
+           }
+
+           totalMoveCount += minMoveCount;
+            return totalMoveCount;
         }
 
-        int count = 0;
-
-        for(int i = coinNumber - 1; i >= 0; i -= 1 ) {
-            if(targetMoney > coins[i]) {
-                count += targetMoney / coins[i];
-                targetMoney = targetMoney % coins[i];
-            }
+        private int countAlphabetMove(char c) {
+            return Math.min(c - 'A' , 'Z' - c + 1);
         }
-
-        System.out.print(count);
-        // coinNumber(동전갯수) k(목표금액)
-        // A동전 데이터 배열
-        // 그리디 알고리즘의 핵심이론 매번 최선의 선택을 하면 최선의 해를 구할 수 가 있다 라는 이론이다.
-        // 금액이 큰 동전부터 선택해야 개수를 최소로 구성할 수 있다.
-
-        // 금액이 큰 동전부터 해야하기 때문에 for문을 동전의 금액이 큰 순서 부터 반복을 해준다.
-        // if 목표 금액이 현재 동전 보다 작으면 나누어서 플러스를 하고
-        // 목표 금액을 다시 업데이트를 해준다.
-
-        StringTokenizer stringTokenizer = new StringTokenizer(bufferedReader.readLine());
     }
-}
