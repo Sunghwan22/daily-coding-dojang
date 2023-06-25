@@ -1,27 +1,26 @@
+import java.util.Arrays;
 import java.util.Stack;
 
 class Solution {
-    public String solution(String number, int k) {
-        // 스택은 후입 선출이다.
-        //  큐는 선입 후출
-        char[] result = new char[number.length() -k];
-        Stack<Character> stack = new Stack<>();
+    public int solution(int[] people, int limit) {
+        int[] sortByWeight = sortByWeight(people);
 
-        for(int i =0; i < number.length(); i += 1) {
-            char c = number.charAt(i);
+        int first = 0;
+        int last = people.length - 1;
+        int answer = 0;
 
-            while(!stack.isEmpty() && stack.peek() < c && k >0) {
-                stack.pop();
-                k -= 1;
+        for(int i = last; last >= first; last -= 1) {
+            if(sortByWeight[first] + sortByWeight[last] <= limit) {
+                first += 1;
             }
 
-            stack.push(c);
+            answer += 1;
         }
 
-        for(int i = 0; i < result.length; i += 1) {
-            result[i] = stack.get(i);
-        }
+        return answer;
+    }
 
-        return new String(result);
+    private int[] sortByWeight(int[] people) {
+        return Arrays.stream(people).sorted().toArray();
     }
 }
