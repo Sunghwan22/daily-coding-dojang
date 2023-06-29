@@ -1,92 +1,28 @@
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.Iterator;
 
 public class Solution {
-    private Position left;
-    private Position right;
-    private Position numPos;
+    public int solution(String[][] clothes) {
+        HashMap<String, Integer> clothMap = new HashMap<>();
 
-    public String solution(int[] numbers, String hand) {
-        // 1. 왼손 오른쪽 위치 초기화
-        // 2. 숫자를 누를 손가락 정하기
-        // 3. 정해진 손가락을 answer에 저장하고 손가락 이동
-        // 3, 0 , 3, 2 는 처음 시작위치이다.
-        // 2차원배열에서는 세로 가로 순으로 된다.
-
-        String answer = "";
-
-        left = new Position(3, 0);
-        right = new Position(3, 2);
-        // 넘버 포지션이면은
-        for (int number : numbers) {
-            numPos = new Position((number - 1) / 3, (number - 1) % 3);
-             if(number == 0) {
-                 numPos = new Position(3, 1);
-                 String finger = numPos.getFinger(hand);
-
-                 answer += finger;
-
-                 if(finger.equals("L")) {
-                     left = numPos;
-                 }
-
-                 if(finger.equals("R")) {
-                     right = numPos;
-                 }
-             }
+        for (String[] cloth : clothes) {
+            String type = cloth[1];
+            // 종류의 의상이 몇개가 있냐 라는 것을 알아야 한다.
+            // 1. 옷을 종류별로 구분한다.
+            // 2. 입지 않는 경우를 추가한다.
+            // 아무 종류의 옷도 입지 않을 때가 있어서 -1
+            clothMap.put(type, clothMap.getOrDefault(type, 0) + 1);
+            // 있으면 + 1 이고 없으면 그냥 1이다 레전드
+            // getOrDefaultValue이거 정말 레전드 발상이다 이렇게 생각ㅇ르 할 수 있구나
         }
 
-        return answer;
-    }
+        int answer = 1;
 
-    class Position {
-        int row;
-        int col;
-
-        Position(int row, int col) {
-            this.row = row;
-            this.col = col;
+        for (Integer integer : clothMap.values()) {
+            // 입지 않는 경우가 있기 때문에 + 1 을 해줌
+            answer *= integer + 1;
         }
 
-        public String getFinger(String hand) {
-            // 손가락을 움직이는 법칙을 이 함수에서 하겠다.
-            String finger = hand.equals("right") ? "R" : "L";
-
-            if(this.col == 0) {
-                finger = "L";
-            }
-
-            if(this.col == 2) {
-                finger = "R";
-            }
-
-            if(this.col == 1) {
-                int leftDistance = left.getDistance(this);
-                int rightDistance = right.getDistance(this);
-
-                if(leftDistance < rightDistance) {
-                    finger = "L";
-                }
-
-                if(leftDistance > rightDistance) {
-                    finger = "R";
-                }
-            }
-
-            return finger;
-        }
-
-        private int getDistance(Position position) {
-            return Math.abs(this.col - position.col) + Math.abs(this.row - position.row);
-        }
-    }
-
-    public static void main(String[] args) {
-        Solution solution = new Solution();
-        int[] numbers = {1, 3, 4, 5, 8, 2, 1, 4, 5, 9, 5};
-        String hand = "right";
-        System.out.println(solution.solution(numbers, hand));
+        return answer - 1;
     }
 }
-
-
